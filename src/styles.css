@@ -1,0 +1,268 @@
+/* --- Base & Body --- */
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 40px;
+}
+
+/* --- Main App "Phone" Container --- */
+.App-container {
+  max-width: 420px; /* Looks like a mobile screen */
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 70, 150, 0.12);
+  padding: 25px;
+  box-sizing: border-box; /* Important for padding */
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  color: #1a237e; /* A deep, techy blue */
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* --- Upload View (STEP 1) --- */
+.upload-container {
+  text-align: center;
+  border: 2px dashed #c0c8e0;
+  border-radius: 16px;
+  padding: 30px 20px;
+  background-color: #fafbff;
+}
+
+.upload-instructions {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* --- General Button Styling --- */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 50px; /* Makes it a "pill" shape */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  /* This is the "catchy" gradient */
+  background: linear-gradient(90deg, #007aff, #00c6ff);
+  box-shadow: 0 4px 15px rgba(0, 150, 255, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 150, 255, 0.4);
+}
+
+/* --- The File Input "Trick" (STEP 1) --- */
+.file-input-hidden {
+  display: none; /* Hide the ugly default input */
+}
+
+/* The <label> acts as our new, styled button */
+.file-input-label {
+  /* It inherits all styles from .btn-primary */
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.file-name {
+  margin-top: 20px;
+  color: #007aff;
+  font-weight: 500;
+}
+
+/* --- Future Cycles Input --- */
+.future-cycles-input {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.future-cycles-label {
+  display: block;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.future-cycles-field {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px 16px;
+  border: 2px solid #c0c8e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.future-cycles-field:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.future-cycles-field:disabled {
+  background-color: #f4f6f8;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* --- Loading & Error (STEP 1) --- */
+.loading-spinner {
+  font-weight: 500;
+  color: #555;
+  padding: 20px;
+}
+
+.error-message {
+  color: #ff3b30;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+/* --- Dashboard View (STEP 2) --- */
+.dashboard-container {
+  text-align: center;
+}
+
+.file-name-small {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  color: #555;
+  background-color: #f4f6f8;
+  padding: 3px 8px;
+  border-radius: 6px;
+  word-break: break-all;
+}
+
+/* --- Chart (STEP 2) --- */
+.chart-container {
+  width: 100%;
+  height: 350px;
+  margin-top: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fafbff;
+  border-radius: 16px;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Key Prediction Cards (STEP 2) --- */
+.predictions-summary {
+  margin-top: 25px;
+}
+
+.prediction-card {
+  background: linear-gradient(135deg, #007aff, #00c6ff);
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 150, 255, 0.3);
+}
+
+.prediction-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.prediction-card p {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.prediction-card span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* --- Tips Section (STEP 2) --- */
+.tips-container {
+  margin-top: 30px;
+  text-align: left;
+  background-color: #fafbff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #e0e8f3;
+}
+
+.tips-container h3 {
+  text-align: center;
+  margin-top: 0;
+  color: #1a237e;
+}
+
+.tips-container ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.tips-container li {
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.tips-container li:last-child {
+  margin-bottom: 0;
+}
+/* --- Fix for long filename --- */
+.file-name-small {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  color: #555;
+  background-color: #f4f6f8;
+  padding: 5px 8px; /* Added a bit more padding */
+  border-radius: 6px;
+  word-break: break-all; /* This forces the long word to wrap */
+  line-height: 1.4; /* Improves readability when wrapped */
+  display: inline-block; /* Helps with spacing */
+  max-width: 90%; /* Prevents it from touching the edges */
+}
+
+/* --- Cycle Range Info --- */
+.cycle-range-info {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* --- (Optional) Tweak chart legend spacing --- */
+.recharts-legend-wrapper {
+  /* This pushes the "Historical | Predicted" legend down a bit */
+  margin-top: 10px !important;
+}
