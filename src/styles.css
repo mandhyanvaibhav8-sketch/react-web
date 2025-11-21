@@ -152,6 +152,34 @@ h2 {
   text-align: center;
 }
 
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-main {
+  margin-top: 24px;
+}
+
+.dashboard-main-right {
+  margin-top: 24px;
+}
+
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+.run-btn-container {
+  margin-top: 24px;
+  text-align: center;
+}
+
 .file-name-small {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9rem;
@@ -265,4 +293,71 @@ h2 {
 .recharts-legend-wrapper {
   /* This pushes the "Historical | Predicted" legend down a bit */
   margin-top: 10px !important;
+}
+
+/* --- Responsive Layout Tweaks --- */
+
+/* Small tablets and up */
+@media (min-width: 600px) {
+  .App-container {
+    max-width: 640px;
+    padding: 32px;
+  }
+
+  .upload-container {
+    padding: 35px 30px;
+  }
+
+  .chart-container {
+    height: 380px;
+  }
+}
+
+/* Larger tablets / desktops */
+@media (min-width: 900px) {
+  body {
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .App-container {
+    max-width: 900px;
+  }
+
+  .dashboard-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  /* Place chart + insights side by side on wide screens */
+  .dashboard-main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .dashboard-main-left {
+    flex: 2;
+  }
+
+  .dashboard-main-right {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+
+  .predictions-summary {
+    margin-top: 0;
+  }
 }
