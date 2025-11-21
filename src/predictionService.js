@@ -2,7 +2,7 @@
 
 const API_URL = 'https://bms-server-lc3t.onrender.com'; // <-- your live backend
 
-export async function sendFileForPrediction(file, futureCount = 50) {
+export async function sendFileForPrediction(file, futureCount = 0) {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('future_cycles', futureCount);
@@ -19,3 +19,4 @@ export async function sendFileForPrediction(file, futureCount = 50) {
 
   return await res.json();
 }
+
