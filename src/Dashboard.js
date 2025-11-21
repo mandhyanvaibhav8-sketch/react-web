@@ -57,104 +57,121 @@ export default function Dashboard({
 
   return (
     <div className="dashboard-container">
-      <h2>
-        Prediction for:
-        <br />
-        <span className="file-name-small">{fileName}</span>
-      </h2>
+      <div className="dashboard-header">
+        <h2>
+          Prediction for:
+          <br />
+          <span className="file-name-small">{fileName}</span>
+        </h2>
 
-      <div className="chart-container">
-        <ResponsiveContainer width="100%" height={350}>
-          <LineChart 
-            data={chartData}
-            margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e8f3" opacity={0.5} />
-            <XAxis
-              dataKey="cycle"
-              stroke="#666"
-              tick={{ fill: '#666', fontSize: 12 }}
-              label={{
-                value: 'Charge Cycles',
-                position: 'insideBottom',
-                offset: -10,
-                style: { textAnchor: 'middle', fill: '#666', fontSize: 13, fontWeight: 500 }
-              }}
-            />
-            <YAxis
-              stroke="#666"
-              tick={{ fill: '#666', fontSize: 12 }}
-              domain={yDomain}
-              tickFormatter={(value) =>
-                typeof value === 'number' ? value.toFixed(2) : value
-              }
-              label={{
-                value: 'Capacity (mAh)',
-                angle: -90,
-                position: 'insideLeft',
-                style: { textAnchor: 'middle', fill: '#666', fontSize: 13, fontWeight: 500 }
-              }}
-            />
-            <Tooltip 
-              contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #e0e8f3',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-              }}
-              formatter={(value) => [`${value.toFixed(2)} mAh`, 'Predicted']}
-              labelFormatter={(label) => `Cycle: ${label}`}
-            />
-            <Line
-              type="monotone"
-              dataKey="capacity"
-              name="Predicted"
-              stroke="#007aff"
-              strokeWidth={3}
-              dot={{ fill: '#007aff', r: 3, strokeWidth: 2, stroke: '#fff' }}
-              activeDot={{ r: 6 }}
-              animationDuration={800}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <button
+          className="btn-primary desktop-only"
+          onClick={onRunNewPrediction}
+        >
+          Run New Prediction
+        </button>
       </div>
-      
-      {firstCycle && lastCycle && (
-        <p className="cycle-range-info">
-          Showing predictions from cycle {firstCycle} to {lastCycle}
-        </p>
-      )}
 
-      {/* Summary card */}
-      {finalPred && lastCycle && (
-        <div className="predictions-summary">
-          <div className="prediction-card">
-            <h4>Predicted Capacity</h4>
-            <p>{finalPred.toFixed(2)}</p>
-            <span>at cycle {lastCycle}</span>
+      <div className="dashboard-main">
+        <div className="dashboard-main-left">
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={350}>
+              <LineChart 
+                data={chartData}
+                margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#e0e8f3" opacity={0.5} />
+                <XAxis
+                  dataKey="cycle"
+                  stroke="#666"
+                  tick={{ fill: '#666', fontSize: 12 }}
+                  label={{
+                    value: 'Charge Cycles',
+                    position: 'insideBottom',
+                    offset: -10,
+                    style: { textAnchor: 'middle', fill: '#666', fontSize: 13, fontWeight: 500 }
+                  }}
+                />
+                <YAxis
+                  stroke="#666"
+                  tick={{ fill: '#666', fontSize: 12 }}
+                  domain={yDomain}
+                  tickFormatter={(value) =>
+                    typeof value === 'number' ? value.toFixed(2) : value
+                  }
+                  label={{
+                    value: 'Capacity (mAh)',
+                    angle: -90,
+                    position: 'insideLeft',
+                    style: { textAnchor: 'middle', fill: '#666', fontSize: 13, fontWeight: 500 }
+                  }}
+                />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e0e8f3',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
+                  formatter={(value) => [`${value.toFixed(2)} mAh`, 'Predicted']}
+                  labelFormatter={(label) => `Cycle: ${label}`}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="capacity"
+                  name="Predicted"
+                  stroke="#007aff"
+                  strokeWidth={2}
+                  dot={false}
+                  activeDot={{ r: 4 }}
+                  animationDuration={800}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          
+          {firstCycle && lastCycle && (
+            <p className="cycle-range-info">
+              Showing predictions from cycle {firstCycle} to {lastCycle}
+            </p>
+          )}
+        </div>
+
+        <div className="dashboard-main-right">
+          {/* Summary card */}
+          {finalPred && lastCycle && (
+            <div className="predictions-summary">
+              <div className="prediction-card">
+                <h4>Predicted Capacity</h4>
+                <p>{finalPred.toFixed(2)}</p>
+                <span>at cycle {lastCycle}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Tips */}
+          {insights.length > 0 && (
+            <div className="tips-container">
+              <h3>Personalized Battery Advice</h3>
+              <ul>
+                {insights.map((tip, idx) => (
+                  <li key={idx}>⚡ {tip}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Mobile: button below graph & info, centered */}
+          <div className="run-btn-container mobile-only">
+            <button
+              className="btn-primary"
+              onClick={onRunNewPrediction}
+            >
+              Run New Prediction
+            </button>
           </div>
         </div>
-      )}
-
-      {/* Tips */}
-      {insights.length > 0 && (
-        <div className="tips-container">
-          <h3>Personalized Battery Advice</h3>
-          <ul>
-            {insights.map((tip, idx) => (
-              <li key={idx}>⚡ {tip}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <button
-        className="btn-primary"
-        onClick={onRunNewPrediction}
-        style={{ marginTop: '20px' }}
-      >
-        Run New Prediction
-      </button>
+      </div>
     </div>
   );
 }
